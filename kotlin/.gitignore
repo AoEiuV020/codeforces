@@ -39,3 +39,7 @@ Thumbs.db
 
 # slf4j-simple configurations
 simplelogger.properties
+
+# tools
+/file
+/method

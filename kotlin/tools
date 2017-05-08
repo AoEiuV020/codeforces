@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -e
+new() {
+test -z "$1" && exit 1
+question=$1
+echo "p$question.AnswerTest.t$question" > method
+mkdir src/main/kotlin/p$question/
+echo src/main/kotlin/p$question/solution.kt
+echo src/main/kotlin/p$question/solution.kt >file
+cat >src/main/kotlin/p$question/solution.kt <<EOF
+package p$question;
+
+/**
+ * Created by AoEiuV020 on $(date '+%Y/%m/%d').
+ */
+fun main(vararg args: String) {
+}
+EOF
+mkdir src/test/kotlin/p$question/
+echo src/test/kotlin/p$question/AnswerTest.kt
+cat >src/test/kotlin/p$question/AnswerTest.kt <<EOF
+package p$question;
+
+import org.junit.Test
+import kotlin.test.*
+import base.BaseTest
+
+/**
+* Created by AoEiuV020 on $(date '+%Y/%m/%d').
+*/
+class AnswerTest: BaseTest() {
+    @Test
+    fun t$question() {
+        input("""
+        """)
+        main()
+        assertEquals("", output)
+    }
+}
+EOF
+}
+code() {
+sed 1d `cat file`
+}
+t() {
+./gradlew test --tests `cat method`
+}
+case "$1" in
+    "n" )
+        new $2
+        ;;
+    "c" )
+        code
+        ;;
+    "t" )
+        t
+        ;;
+esac
