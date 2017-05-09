@@ -17,10 +17,13 @@ echo src/main/kotlin/p$question/solution.kt >file
 cat >src/main/kotlin/p$question/solution.kt <<EOF
 package p$question;
 
+import java.util.*
+
 /**
  * Created by AoEiuV020 on $(date '+%Y/%m/%d').
  */
 fun main(vararg args: String) {
+    val scanner = Scanner(System.\`in\`)
 }
 EOF
 mkdir src/test/kotlin/p$question/
@@ -42,7 +45,7 @@ class AnswerTest: BaseTest() {
         input("""
         """)
         main()
-        assertEquals("", output)
+        assertEquals(0, output.toInt())
     }
 }
 EOF
