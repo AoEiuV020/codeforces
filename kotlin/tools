@@ -37,8 +37,8 @@ import kotlin.test.*
 import base.BaseTest
 
 /**
-* Created by AoEiuV020 on $(date '+%Y/%m/%d').
-*/
+ * Created by AoEiuV020 on $(date '+%Y/%m/%d').
+ */
 class AnswerTest: BaseTest() {
     @Test
     fun t$question() {
