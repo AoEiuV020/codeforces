@@ -4,7 +4,14 @@ new() {
 test -z "$1" && exit 1
 question=$1
 echo "p$question.AnswerTest.t$question" > method
-mkdir src/main/kotlin/p$question/
+if ! mkdir src/main/kotlin/p$question/ &>/dev/null ;then
+echo src/main/kotlin/p$question/solution.kt
+echo src/main/kotlin/p$question/solution.kt >file
+echo src/test/kotlin/p$question/AnswerTest.kt
+echo src/test/kotlin/p$question/AnswerTest.kt >>file
+exit 0
+fi
+
 echo src/main/kotlin/p$question/solution.kt
 echo src/main/kotlin/p$question/solution.kt >file
 cat >src/main/kotlin/p$question/solution.kt <<EOF
@@ -18,6 +25,7 @@ fun main(vararg args: String) {
 EOF
 mkdir src/test/kotlin/p$question/
 echo src/test/kotlin/p$question/AnswerTest.kt
+echo src/test/kotlin/p$question/AnswerTest.kt >>file
 cat >src/test/kotlin/p$question/AnswerTest.kt <<EOF
 package p$question;
 
@@ -40,7 +48,7 @@ class AnswerTest: BaseTest() {
 EOF
 }
 code() {
-sed 1d `cat file`
+sed 1d `head -1 file`
 }
 t() {
 ./gradlew test --tests `cat method`
