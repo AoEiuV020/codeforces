@@ -51,7 +51,7 @@ code() {
 sed 1d `head -1 file`
 }
 t() {
-./gradlew test --tests `cat method`
+./gradlew test --tests `cat method` $1
 }
 case "$1" in
     "n" )
@@ -61,6 +61,6 @@ case "$1" in
         code
         ;;
     "t" )
-        t
+        t $2
         ;;
 esac
