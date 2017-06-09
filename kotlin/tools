@@ -20,7 +20,7 @@ package p$question;
 import java.util.*
 
 /**
- * Created by AoEiuV020 on $(date '+%Y/%m/%d').
+ * Created by AoEiuV020 on $(date '+%Y/%m/%d-%H:%M:%S').
  */
 fun main(vararg args: String) {
     val scanner = Scanner(System.\`in\`)
@@ -37,7 +37,7 @@ import kotlin.test.*
 import base.BaseTest
 
 /**
- * Created by AoEiuV020 on $(date '+%Y/%m/%d').
+ * Created by AoEiuV020 on $(date '+%Y/%m/%d-%H:%M:%S').
  */
 class AnswerTest: BaseTest() {
     @Test
