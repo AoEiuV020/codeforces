@@ -1,4 +1,2 @@
-c = 0
-for _ in range(int(input())):
-    c += int(sum(map(int, input().split())) > 1)
-print(c)
+# https://codeforces.com/contest/231/problem/A
+print(sum(int(sum(int(c == '1') for c in input()) > 1) for i in range(int(input()))))
