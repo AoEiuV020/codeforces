@@ -10,7 +10,7 @@ class Matcher(object):
     def write(self, message):
         line = self.fileout.readline(len(message))
         if line != message:
-            raise AssertionError(f'expect {line}, but {message}')
+            raise AssertionError(f'expect\n"""{line}""", but\n"""{message}"""')
 
     def flush(self):
         pass
@@ -27,6 +27,6 @@ sys.stdin = open(f'{problem}/in', 'r')
 sys.stdout = Matcher(f'{problem}/out')
 while True:
     try:
-        exec(open(f'{problem}/solution.py').read())
+        exec(open(f'{problem}/main.py').read())
     except EOFError as e:
         break
