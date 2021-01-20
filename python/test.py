@@ -11,6 +11,8 @@ class Matcher(object):
         line = self.fileout.readline(len(message))
         if line != message:
             raise AssertionError(f'expect\n"""{line}""", but\n"""{message}"""')
+        else:
+            sys.stderr.write(message)
 
     def flush(self):
         pass
