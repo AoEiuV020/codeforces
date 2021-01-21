@@ -3,6 +3,15 @@ import os
 import sys
 
 
+class Provider:
+    def __init__(self, path):
+        self.filein = open(path, 'r')
+    def readline(self):
+        line = self.filein.readline()
+        sys.stderr.write(f'> {line}')
+        return line
+
+
 class Matcher(object):
     def __init__(self, path):
         self.fileout = open(path, 'r')
@@ -25,10 +34,11 @@ files = glob.glob("p*")
 times = list(map(lambda x: os.stat(x).st_mtime, files))
 problem = files[times.index(max(times))]
 print(f'test {problem}')
-sys.stdin = open(f'{problem}/in', 'r')
+sys.stdin = Provider(f'{problem}/in')
 sys.stdout = Matcher(f'{problem}/out')
 while True:
     try:
         exec(open(f'{problem}/main.py').read())
     except EOFError as e:
         break
+assert sys.stdout.fileout.readline() == ''
